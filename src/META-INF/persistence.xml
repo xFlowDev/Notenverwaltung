@@ -1,1 +1,19 @@
-<!-- TODO Insert persistence.xml from FIT -->
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="notenverwaltung">
+        <class>fhswf.floed.jpa.Course</class>
+        <class>fhswf.floed.jpa.Lecturer</class>
+        <class>fhswf.floed.jpa.Module</class>
+        <class>fhswf.floed.jpa.Type</class>
+        <class>fhswf.floed.jpa.User</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/notenverwaltung?useSSL=false"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="eclipselink.jdbc.url" value="jdbc:mariadb://localhost:3306/notenverwaltung?useSSL=false"/>
+            <property name="eclipselink.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
+        </properties>
+    </persistence-unit>
+</persistence>
