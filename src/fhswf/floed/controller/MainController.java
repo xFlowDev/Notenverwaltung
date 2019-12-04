@@ -11,14 +11,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Controller {
+public class MainController {
     @FXML
     public AnchorPane anchorPane;
 
     @FXML
     public Button addModuleButton;
 
-    public Controller() {
+    public MainController() {
         // Set the anchorPane to the specified size, so that all scenes have the same height when I open another
         anchorPane = new AnchorPane();
         anchorPane.setPrefHeight(WindowSizeManager.getHeight());

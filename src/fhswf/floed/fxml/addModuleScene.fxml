@@ -33,11 +33,11 @@
                         </font>
                     </Label>
                     <Label layoutX="42.0" layoutY="103.0" text="Modul"/>
-                    <TextField layoutX="42.0" layoutY="120.0" prefWidth="400.0" fx:id="moduleField"/>
+                    <TextField layoutX="42.0" layoutY="120.0" prefWidth="400.0" fx:id="nameField"/>
                     <Label layoutX="42.0" layoutY="178.0" text="Creditpoints"/>
                     <IntegerField layoutX="42.0" layoutY="195.0" prefWidth="400.0" fx:id="maxCreditsField"/>
                     <Label layoutX="42.0" layoutY="253.0" text="Semesterwochenstunden"/>
-                    <IntegerField layoutX="42.0" layoutY="270.0" prefWidth="400.0" fx:id="semesterhoursField"/>
+                    <IntegerField layoutX="42.0" layoutY="270.0" prefWidth="400.0" fx:id="weekhoursField"/>
                     <Label layoutX="42.0" layoutY="328.0" text="Aktueller Versuch"/>
                     <IntegerField layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="currentTryField"/>
                 </AnchorPane>

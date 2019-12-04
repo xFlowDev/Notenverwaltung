@@ -4,7 +4,6 @@ public class WindowSizeManager {
     private static double width = 1200;
     private static double height = 800;
 
-
     public static void setWidth(double newWidth) {
         width = newWidth;
     }
@@ -20,6 +19,4 @@ public class WindowSizeManager {
     public static double getHeight() {
         return height;
     }
-
-
 }

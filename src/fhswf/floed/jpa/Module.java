@@ -10,6 +10,8 @@ import java.util.Objects;
 public class Module {
     private int id;
     private String name;
+    private int creditpoints;
+    private int weekhours;
 
     @Id
     @Column(name = "id")
@@ -43,5 +45,25 @@ public class Module {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    @Basic
+    @Column(name = "creditpoints")
+    public int getCreditpoints() {
+        return creditpoints;
+    }
+
+    public void setCreditpoints(int creditpoints) {
+        this.creditpoints = creditpoints;
+    }
+
+    @Basic
+    @Column(name = "weekhours")
+    public int getWeekhours() {
+        return weekhours;
+    }
+
+    public void setWeekhours(int weekhours) {
+        this.weekhours = weekhours;
     }
 }
