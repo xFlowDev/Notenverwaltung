@@ -1,12 +1,13 @@
 package fhswf.floed.jpa;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Type.all", query = "SELECT t FROM Type t"),
+        @NamedQuery(name = "Type.findByName", query = "SELECT t FROM Type t where t.name = :name")
+})
 public class Type {
     private int id;
     private String name;

@@ -1,19 +1,22 @@
 package fhswf.floed.jpa;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "User.all", query = "SELECT u FROM User u"),
+        @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.username = :name")
+})
 public class User {
     private int id;
     private String firstname;
     private String lastname;
     private String email;
+    private Type userType;
     private String password;
     private String salt;
+    private String username;
 
     @Id
     @Column(name = "id")
@@ -91,5 +94,25 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, firstname, lastname, email, password, salt);
+    }
+
+    @Basic
+    @Column(name = "username")
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "type_id")
+    public Type getType() {
+        return this.userType;
+    }
+
+    public void setType(Type type) {
+        this.userType = type;
     }
 }
