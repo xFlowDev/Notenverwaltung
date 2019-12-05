@@ -17,7 +17,8 @@
     <BorderPane prefHeight="800.0" prefWidth="1200.0">
         <top>
             <AnchorPane prefHeight="75.0" prefWidth="1200.0"
-                  style="-fx-border-width: 0px 0px 1px 0px; -fx-border-color: lightgrey;" BorderPane.alignment="CENTER">
+                        style="-fx-border-width: 0px 0px 1px 0px; -fx-border-color: lightgrey;"
+                        BorderPane.alignment="CENTER">
                 <padding>
                     <Insets bottom="5" top="5"/>
                 </padding>
@@ -43,23 +44,8 @@
                     <IntegerField layoutX="42.0" layoutY="270.0" prefWidth="400.0" fx:id="weekhoursField"/>
                     <Label layoutX="42.0" layoutY="328.0" text="Aktueller Versuch"/>
                     <IntegerField layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="currentTryField"/>
-                </AnchorPane>
-                <AnchorPane prefHeight="725.0" prefWidth="500.0"
-                            style="-fx-border-width: 0px 1px 0px 1px; -fx-border-color: lightgrey;">
-                    <Label layoutX="42.0" layoutY="103.0" text="Dozent"/>
-                    <ChoiceBox layoutX="42.0" layoutY="120.0" prefWidth="400.0" fx:id="lecturerField">
-                        <items>
-                        </items>
-                    </ChoiceBox>
-                    <Label layoutX="42.0" layoutY="178.0" text="Erzielte Note"/>
-                    <FloatField layoutX="42.0" layoutY="195.0" prefWidth="400.0" fx:id="gradeField"/>
-                    <Label layoutX="42.0" layoutY="253.0" text="Erzielte Creditpoints"/>
-                    <IntegerField layoutX="42.0" layoutY="270.0" prefWidth="400.0" fx:id="creditsField"/>
-                    <Label layoutX="42.0" layoutY="328.0" text="Typ"/>
-                    <TextField layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="typeField"/>
-                </AnchorPane>
-                <AnchorPane prefHeight="725.0" prefWidth="200.0">
-
+                    <Label layoutX="42.0" layoutY="403.0" text="Dozent"/>
+                    <ChoiceBox layoutX="42.0" layoutY="420.0" prefWidth="400.0" fx:id="lecturerField"/>
                 </AnchorPane>
             </HBox>
         </center>
