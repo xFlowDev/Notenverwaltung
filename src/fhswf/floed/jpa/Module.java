@@ -1,9 +1,6 @@
 package fhswf.floed.jpa;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -12,6 +9,7 @@ public class Module {
     private String name;
     private int creditpoints;
     private int weekhours;
+    private Lecturer lecturer;
 
     @Id
     @Column(name = "id")
@@ -65,5 +63,15 @@ public class Module {
 
     public void setWeekhours(int weekhours) {
         this.weekhours = weekhours;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "lecturer_id")
+    public Lecturer getLecturer() {
+        return this.lecturer;
+    }
+
+    public void setLecturer(Lecturer lecturer) {
+        this.lecturer = lecturer;
     }
 }

@@ -1,12 +1,12 @@
 package fhswf.floed.jpa;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Lecturer.all", query = "SELECT l FROM Lecturer l")
+})
 public class Lecturer {
     private int id;
     private String firstname;

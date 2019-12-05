@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fhswf.floed.controller.ModuleController"
-            prefHeight="400.0" prefWidth="600.0">
+<?import fhswf.floed.custom.fields.IntegerField?>
+<?import fhswf.floed.custom.fields.FloatField?>
+<?import javafx.scene.control.ChoiceBox?>
+<AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="fhswf.floed.controller.ModuleController">
+    <BorderPane prefHeight="800.0" prefWidth="1200.0">
+        <top>
+            <AnchorPane prefHeight="75.0" prefWidth="1200.0"
+                  style="-fx-border-width: 0px 0px 1px 0px; -fx-border-color: lightgrey;" BorderPane.alignment="CENTER">
+                <padding>
+                    <Insets bottom="5" top="5"/>
+                </padding>
+                <Button fx:id="backButton" mnemonicParsing="false" onAction="#backToMain" prefHeight="75.0"
+                        prefWidth="75.0" text="BACK"/>
+                <Button fx:id="createModuleButton" layoutX="900.0" layoutY="6.0" mnemonicParsing="false"
+                        onAction="#createModule" prefHeight="75.0" prefWidth="75.0" text="Speichern"/>
+            </AnchorPane>
+        </top>
+        <center>
+            <HBox>
+                <AnchorPane prefHeight="725.0" prefWidth="500.0">
+                    <Label layoutX="28.0" layoutY="33.0" text="Modul hinzufügen">
+                        <font>
+                            <Font size="24.0"/>
+                        </font>
+                    </Label>
+                    <Label layoutX="42.0" layoutY="103.0" text="Modul"/>
+                    <TextField layoutX="42.0" layoutY="120.0" prefWidth="400.0" fx:id="nameField"/>
+                    <Label layoutX="42.0" layoutY="178.0" text="Creditpoints"/>
+                    <IntegerField layoutX="42.0" layoutY="195.0" prefWidth="400.0" fx:id="maxCreditsField"/>
+                    <Label layoutX="42.0" layoutY="253.0" text="Semesterwochenstunden"/>
+                    <IntegerField layoutX="42.0" layoutY="270.0" prefWidth="400.0" fx:id="weekhoursField"/>
+                    <Label layoutX="42.0" layoutY="328.0" text="Aktueller Versuch"/>
+                    <IntegerField layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="currentTryField"/>
+                </AnchorPane>
+                <AnchorPane prefHeight="725.0" prefWidth="500.0"
+                            style="-fx-border-width: 0px 1px 0px 1px; -fx-border-color: lightgrey;">
+                    <Label layoutX="42.0" layoutY="103.0" text="Dozent"/>
+                    <ChoiceBox layoutX="42.0" layoutY="120.0" prefWidth="400.0" fx:id="lecturerField">
+                        <items>
+                        </items>
+                    </ChoiceBox>
+                    <Label layoutX="42.0" layoutY="178.0" text="Erzielte Note"/>
+                    <FloatField layoutX="42.0" layoutY="195.0" prefWidth="400.0" fx:id="gradeField"/>
+                    <Label layoutX="42.0" layoutY="253.0" text="Erzielte Creditpoints"/>
+                    <IntegerField layoutX="42.0" layoutY="270.0" prefWidth="400.0" fx:id="creditsField"/>
+                    <Label layoutX="42.0" layoutY="328.0" text="Typ"/>
+                    <TextField layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="typeField"/>
+                </AnchorPane>
+                <AnchorPane prefHeight="725.0" prefWidth="200.0">
 
+                </AnchorPane>
+            </HBox>
+        </center>
+    </BorderPane>
 </AnchorPane>
