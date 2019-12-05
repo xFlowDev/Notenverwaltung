@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="fhswf.floed.controller.LecturerController"
+            fx:id="anchorPane">
+    <BorderPane prefHeight="800.0" prefWidth="1200.0">
+        <top>
+            <AnchorPane prefHeight="75.0" prefWidth="1200.0"
+                        style="-fx-border-width: 0px 0px 1px 0px; -fx-border-color: lightgrey;"
+                        BorderPane.alignment="CENTER">
+                <padding>
+                    <Insets bottom="5" top="5"/>
+                </padding>
+                <Button fx:id="backToMainButton" layoutX="8.0" layoutY="9.0" mnemonicParsing="false"
+                        onAction="#backToMain" prefHeight="75.0" prefWidth="75.0" text="Zurück"/>
+
+                <Button fx:id="createLecturerButton" layoutX="900.0" layoutY="6.0" mnemonicParsing="false"
+                        onAction="#createLecturer" prefHeight="75.0" prefWidth="75.0" text="Speichern"/>
+            </AnchorPane>
+        </top>
+        <center>
+            <AnchorPane>
+                <Label layoutX="28.0" layoutY="33.0" text="Dozent erstellen">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="42.0" layoutY="103.0" text="Vorname"/>
+                <TextField layoutX="42.0" layoutY="120.0" prefWidth="400.0" fx:id="firstnameField"/>
+                <Label layoutX="42.0" layoutY="178.0" text="Nachname"/>
+                <TextField layoutX="42.0" layoutY="195.0" prefWidth="400.0" fx:id="lastnameField"/>
+                <Label layoutX="42.0" layoutY="253.0" text="Titel"/>
+                <TextField layoutX="42.0" layoutY="270.0" prefWidth="400.0" fx:id="titleField"/>
+            </AnchorPane>
+        </center>
+    </BorderPane>
+</AnchorPane>

@@ -54,8 +54,8 @@ public class ModuleController {
     public ModuleController() {
         errors = new HashMap<>();
         anchorPane = new AnchorPane();
-        anchorPane.setPrefHeight(WindowSizeManager.getHeight());
-        anchorPane.setPrefWidth(WindowSizeManager.getWidth());
+        anchorPane.setMinHeight(WindowSizeManager.getHeight());
+        anchorPane.setMinWidth(WindowSizeManager.getWidth());
 
         EntityManagerFactory factory = PersistenceManager.getInstance();
         entityManager = factory.createEntityManager();
@@ -70,7 +70,7 @@ public class ModuleController {
      */
     @FXML
     public void backToMainScene() throws IOException {
-        Stage stage = (Stage) backButton.getScene().getWindow();
+        Stage stage = (Stage) anchorPane.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/mainScene.fxml"));
         stage.setScene(new Scene(root));
     }
