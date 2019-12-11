@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="fhswf.floed.controller.TypeController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="400.0" prefWidth="600.0" fx:id="anchorPane">
+    <BorderPane prefHeight="800.0" prefWidth="1200.0">
+        <top>
+            <AnchorPane prefHeight="75.0" prefWidth="1200.0"
+                        style="-fx-border-width: 0px 0px 1px 0px; -fx-border-color: lightgrey;"
+                        BorderPane.alignment="CENTER">
+                <padding>
+                    <Insets bottom="5" top="5"/>
+                </padding>
+                <Button fx:id="backButton" mnemonicParsing="false" onAction="#backToMain" prefHeight="75.0"
+                        prefWidth="75.0" text="BACK"/>
+                <Button fx:id="createTypeButton" layoutX="900.0" layoutY="6.0" mnemonicParsing="false"
+                        onAction="#createType" prefHeight="75.0" prefWidth="75.0" text="Speichern"/>
+            </AnchorPane>
+        </top>
+        <center>
+            <HBox>
+                <AnchorPane prefHeight="725.0" prefWidth="500.0">
+                    <Label layoutX="28.0" layoutY="33.0" text="Modultype erstellen">
+                        <font>
+                            <Font size="24.0"/>
+                        </font>
+                    </Label>
+                    <Label layoutX="42.0" layoutY="103.0" text="Name"/>
+                    <TextField layoutX="42.0" layoutY="120.0" prefWidth="400.0" fx:id="nameField"/>
+                </AnchorPane>
+            </HBox>
+        </center>
+    </BorderPane>
 
 </AnchorPane>

@@ -10,6 +10,7 @@
         <class>fhswf.floed.jpa.User</class>
         <class>fhswf.floed.jpa.Modulegrade</class>
         <class>fhswf.floed.jpa.UserCourse</class>
+        <class>fhswf.floed.jpa.ModuleType</class>
         <properties>
             <!--            <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/notenverwaltung?useSSL=false"/>-->
             <!--            <property name="javax.persistence.jdbc.user" value="root"/>-->

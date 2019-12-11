@@ -58,7 +58,7 @@
                     <Label layoutX="42.0" layoutY="253.0" text="Erzielte Creditpoints"/>
                     <IntegerField disable="true" layoutX="42.0" layoutY="270.0" prefWidth="400.0" fx:id="creditsField"/>
                     <Label layoutX="42.0" layoutY="328.0" text="Typ"/>
-                    <TextField disable="true" layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="typeField"/>
+                    <IntegerField disable="true" layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="typeField"/>
                 </AnchorPane>
                 <AnchorPane prefHeight="725.0" prefWidth="200.0">
 

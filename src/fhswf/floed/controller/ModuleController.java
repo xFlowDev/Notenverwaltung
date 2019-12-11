@@ -58,7 +58,7 @@ public class ModuleController implements Initializable {
     @FXML
     public IntegerField creditsField;
     @FXML
-    public TextField typeField;
+    public IntegerField typeField;
 
     private EntityManager entityManager;
 
@@ -81,21 +81,28 @@ public class ModuleController implements Initializable {
         setModuleNames();
 
         errors = new HashMap<>();
-//        moduleSelectField.getSelectionModel().selectedIndexProperty().addListener(this::loadModuleData);
+        if (moduleSelectField != null) {
+            moduleSelectField.getSelectionModel().selectedItemProperty().addListener(this::loadModuleData);
+        }
     }
 
     private void loadModuleData(Observable observable) {
-        String selectedModule = moduleSelectField.getValue();
+        String selectedModule = moduleSelectField.getSelectionModel().getSelectedItem();
         if (selectedModule != null && !selectedModule.isEmpty()) {
             Integer moduleId = MapHelper.getKeyByValue(moduleNames, selectedModule);
             if (moduleId != null) {
                 Module module = entityManager.find(Module.class, moduleId);
 
-                moduleSelectField.setDisable(true);
+//                moduleSelectField.setDisable(true);
                 maxCreditsField.setText(Integer.toString(module.getCreditpoints()));
                 weekhoursField.setText(Integer.toString(module.getWeekhours()));
                 Lecturer lecturer = module.getLecturer();
                 lecturerDisplayField.setText(lecturer.fullName());
+
+                currentTryField.setIntegerValue(1);
+                gradeField.setDisable(false);
+                creditsField.setDisable(false);
+                // TODO Once Type is ready to use, go on here
             }
         }
     }
