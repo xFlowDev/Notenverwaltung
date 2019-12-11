@@ -2,16 +2,12 @@ package fhswf.floed.controller;
 
 import fhswf.floed.custom.fields.FloatField;
 import fhswf.floed.custom.fields.IntegerField;
-import fhswf.floed.jpa.Lecturer;
 import fhswf.floed.jpa.Module;
-import fhswf.floed.jpa.ModuleType;
+import fhswf.floed.jpa.*;
 import fhswf.floed.singleton.PersistenceManager;
 import fhswf.floed.utils.MapHelper;
 import fhswf.floed.window.WindowSizeManager;
 import javafx.beans.Observable;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -59,7 +55,7 @@ public class ModuleController implements Initializable {
     @FXML
     public IntegerField creditsField;
     @FXML
-    public IntegerField typeField;
+    public TextField typeField;
     @FXML
     public ChoiceBox<String> moduleTypeSelectionField;
 
@@ -70,6 +66,7 @@ public class ModuleController implements Initializable {
     private Map<Integer, String> moduleNames;
 
     private Module module;
+    private Modulegrade modulegrade;
 
     private Map<String, String> errors;
 
@@ -97,7 +94,7 @@ public class ModuleController implements Initializable {
         if (selectedModule != null && !selectedModule.isEmpty()) {
             Integer moduleId = MapHelper.getKeyByValue(moduleNames, selectedModule);
             if (moduleId != null) {
-                Module module = entityManager.find(Module.class, moduleId);
+                module = entityManager.find(Module.class, moduleId);
 
 //                moduleSelectField.setDisable(true);
                 maxCreditsField.setText(Integer.toString(module.getCreditpoints()));
@@ -209,6 +206,45 @@ public class ModuleController implements Initializable {
         } else {
             errors.put("module_type", "Modultyp nicht gefüllt");
         }
+    }
+
+    @FXML
+    public void addModule() {
+        fillModuleGrade();
+        if (errors.size() > 0) {
+            for (String key : errors.keySet()) {
+                System.out.println(key + ": " + errors.get(key));
+            }
+        } else {
+            User user = entityManager.find(User.class, 1);
+            modulegrade.setUser(user);
+            modulegrade.setModule(module);
+
+            entityManager.getTransaction().begin();
+            entityManager.persist(modulegrade);
+            entityManager.getTransaction().commit();
+            System.out.println("saved new grade");
+        }
+    }
+
+    private void fillModuleGrade() {
+        modulegrade = new Modulegrade();
+        float grade = gradeField.getFloatValue();
+        if (grade >= 1.0 && grade <= 5.0) {
+            modulegrade.setGrade(grade);
+        } else {
+            errors.put("grade", "Note muss zwischen 1.0 und 5.0 liegen");
+        }
+
+        int creditpoints = creditsField.getIntegerValue();
+        if (creditpoints >= 0) {
+            modulegrade.setCreditpoints(creditpoints);
+        } else {
+            errors.put("creditpoints", "Creditpoints müssen größer als 0 sein");
+        }
+
+        modulegrade.setGradetry(1);
+
     }
 
     private void loadScene(String target) throws IOException {

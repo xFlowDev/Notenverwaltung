@@ -25,7 +25,7 @@
                 <Button fx:id="backButton" mnemonicParsing="false" onAction="#backToMain" prefHeight="75.0"
                         prefWidth="75.0" text="BACK"/>
                 <Button fx:id="createModuleButton" layoutX="900.0" layoutY="6.0" mnemonicParsing="false"
-                        onAction="#createModule" prefHeight="75.0" prefWidth="75.0" text="Speichern"/>
+                        onAction="#addModule" prefHeight="75.0" prefWidth="75.0" text="Speichern"/>
             </AnchorPane>
         </top>
         <center>
@@ -58,7 +58,7 @@
                     <Label layoutX="42.0" layoutY="253.0" text="Erzielte Creditpoints"/>
                     <IntegerField disable="true" layoutX="42.0" layoutY="270.0" prefWidth="400.0" fx:id="creditsField"/>
                     <Label layoutX="42.0" layoutY="328.0" text="Typ"/>
-                    <IntegerField disable="true" layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="typeField"/>
+                    <TextField disable="true" layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="typeField"/>
                 </AnchorPane>
                 <AnchorPane prefHeight="725.0" prefWidth="200.0">
 
