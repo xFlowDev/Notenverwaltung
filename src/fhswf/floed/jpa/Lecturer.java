@@ -1,17 +1,19 @@
 package fhswf.floed.jpa;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "lecturer")
 @NamedQueries({
-        @NamedQuery(name = "Lecturer.all", query = "SELECT l FROM Lecturer l")
+        @NamedQuery(name = "Lecturer.all", query = "SELECT l FROM lecturer l")
 })
 public class Lecturer {
     private int id;
     private String firstname;
     private String lastname;
     private String title;
+//    private List<Module> modules;
 
     @Id
     @Column(name = "id")
@@ -68,4 +70,17 @@ public class Lecturer {
     public int hashCode() {
         return Objects.hash(id, firstname, lastname, title);
     }
+
+    public String fullName() {
+        return this.title + " " + this.firstname + " " + this.lastname;
+    }
+
+//    @OneToMany(mappedBy = "lecturer")
+//    public List<Module> getModules() {
+//        return this.modules;
+//    }
+//
+//    public void setModules(List<Module> modules) {
+//        this.modules = modules;
+//    }
 }

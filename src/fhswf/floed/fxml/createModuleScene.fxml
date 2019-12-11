@@ -46,6 +46,7 @@
                     <IntegerField layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="currentTryField"/>
                     <Label layoutX="42.0" layoutY="403.0" text="Dozent"/>
                     <ChoiceBox layoutX="42.0" layoutY="420.0" prefWidth="400.0" fx:id="lecturerField"/>
+                    <!--                    TODO Create a Type Selection field-->
                 </AnchorPane>
             </HBox>
         </center>

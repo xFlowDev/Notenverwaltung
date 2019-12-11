@@ -1,18 +1,28 @@
 package fhswf.floed.jpa;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Module.all", query = "SELECT m FROM Module m")
+})
 public class Module {
+    @Id
+    @Column(name = "id")
     private int id;
     private String name;
     private int creditpoints;
     private int weekhours;
+
+    @ManyToOne
+    @JoinColumn(name = "lecturer_id")
     private Lecturer lecturer;
 
-    @Id
-    @Column(name = "id")
+    private List<Modulegrade> grades;
+
+
     public int getId() {
         return id;
     }
@@ -65,8 +75,7 @@ public class Module {
         this.weekhours = weekhours;
     }
 
-    @OneToOne
-    @JoinColumn(name = "lecturer_id")
+
     public Lecturer getLecturer() {
         return this.lecturer;
     }
@@ -74,4 +83,14 @@ public class Module {
     public void setLecturer(Lecturer lecturer) {
         this.lecturer = lecturer;
     }
+
+    @OneToMany(mappedBy = "module")
+    public List<Modulegrade> getGrades() {
+        return this.grades;
+    }
+
+    public void setGrades(List<Modulegrade> grades) {
+        this.grades = grades;
+    }
+
 }

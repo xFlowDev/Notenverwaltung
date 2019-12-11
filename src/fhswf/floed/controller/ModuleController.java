@@ -7,6 +7,10 @@ import fhswf.floed.jpa.Module;
 import fhswf.floed.singleton.PersistenceManager;
 import fhswf.floed.utils.MapHelper;
 import fhswf.floed.window.WindowSizeManager;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -38,6 +42,8 @@ public class ModuleController implements Initializable {
     @FXML
     public TextField nameField;
     @FXML
+    public ChoiceBox<String> moduleSelectField;
+    @FXML
     public IntegerField maxCreditsField;
     @FXML
     public IntegerField weekhoursField;
@@ -45,6 +51,8 @@ public class ModuleController implements Initializable {
     public IntegerField currentTryField;
     @FXML
     public ChoiceBox<String> lecturerField;
+    @FXML
+    public TextField lecturerDisplayField;
     @FXML
     public FloatField gradeField;
     @FXML
@@ -54,33 +62,46 @@ public class ModuleController implements Initializable {
 
     private EntityManager entityManager;
 
-    private List<Lecturer> lecturers;
     private Map<Integer, String> lecturerNames;
-    private List<String> lecturerFieldOptions;
+    private Map<Integer, String> moduleNames;
 
     private Module module;
 
     private Map<String, String> errors;
 
-    public ModuleController() {
-        anchorPane = new AnchorPane();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         anchorPane.setMinHeight(WindowSizeManager.getHeight());
         anchorPane.setMinWidth(WindowSizeManager.getWidth());
 
         EntityManagerFactory factory = PersistenceManager.getInstance();
         entityManager = factory.createEntityManager();
 
+        setLecturerNames();
+        setModuleNames();
+
         errors = new HashMap<>();
-
+//        moduleSelectField.getSelectionModel().selectedIndexProperty().addListener(this::loadModuleData);
     }
 
-    public ModuleController(int id) {
-        // TODO figure out how to pass data between controllers
+    private void loadModuleData(Observable observable) {
+        String selectedModule = moduleSelectField.getValue();
+        if (selectedModule != null && !selectedModule.isEmpty()) {
+            Integer moduleId = MapHelper.getKeyByValue(moduleNames, selectedModule);
+            if (moduleId != null) {
+                Module module = entityManager.find(Module.class, moduleId);
+
+                moduleSelectField.setDisable(true);
+                maxCreditsField.setText(Integer.toString(module.getCreditpoints()));
+                weekhoursField.setText(Integer.toString(module.getWeekhours()));
+                Lecturer lecturer = module.getLecturer();
+                lecturerDisplayField.setText(lecturer.fullName());
+            }
+        }
     }
 
-    @FXML
-    public void backToMain() throws IOException {
-        loadScene("../fxml/mainScene.fxml");
+
+    public ModuleController() {
     }
 
     @FXML
@@ -164,26 +185,47 @@ public class ModuleController implements Initializable {
         stage.setScene(new Scene(root));
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        setLecturerNames();
+    public void setLecturerNames() {
+        if (lecturerField != null) {
+            TypedQuery<Lecturer> lecturersQuery = entityManager.createNamedQuery("Lecturer.all", Lecturer.class);
+            List<Lecturer> lecturers = lecturersQuery.getResultList();
+            if (lecturers.size() <= 0) {
+                System.out.println("No lecturers");
+            } else {
+                lecturerNames = new HashMap<>();
+                List<String> lecturerFieldOptions = new ArrayList<>();
+                String fullName;
+                for (Lecturer l : lecturers) {
+                    fullName = l.getTitle() + " " + l.getFirstname() + " " + l.getLastname();
+                    lecturerNames.put(l.getId(), fullName);
+                    lecturerFieldOptions.add(fullName);
+                }
+                lecturerField.getItems().addAll(lecturerFieldOptions);
+            }
+        }
     }
 
-    public void setLecturerNames() {
-        TypedQuery<Lecturer> lecturersQuery = entityManager.createNamedQuery("Lecturer.all", Lecturer.class);
-        lecturers = lecturersQuery.getResultList();
-        if (lecturers.size() <= 0) {
-            System.out.println("No lecturers");
-        } else {
-            lecturerNames = new HashMap<>();
-            lecturerFieldOptions = new ArrayList<>();
-            String fullName;
-            for (Lecturer l : lecturers) {
-                fullName = l.getTitle() + " " + l.getFirstname() + " " + l.getLastname();
-                lecturerNames.put(l.getId(), fullName);
-                lecturerFieldOptions.add(fullName);
+    public void setModuleNames() {
+        if (moduleSelectField != null) {
+            TypedQuery<Module> moduleTypedQuery = entityManager.createNamedQuery("Module.all", Module.class);
+            List<Module> modules = moduleTypedQuery.getResultList();
+            if (modules.size() <= 0) {
+                System.out.println("No modules");
+            } else {
+                moduleNames = new HashMap<>();
+                List<String> moduleFieldOptions = new ArrayList<>();
+                for (Module m : modules) {
+                    moduleNames.put(m.getId(), m.getName());
+                    moduleFieldOptions.add(m.getName());
+                }
+                moduleSelectField.getItems().addAll(moduleFieldOptions);
             }
-            lecturerField.getItems().addAll(lecturerFieldOptions);
         }
+    }
+
+
+    @FXML
+    public void backToMain() throws IOException {
+        loadScene("../fxml/mainScene.fxml");
     }
 }

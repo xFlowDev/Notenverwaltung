@@ -1,6 +1,7 @@
 package fhswf.floed.jpa;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +18,8 @@ public class User {
     private String password;
     private String salt;
     private String username;
+    private List<Modulegrade> grades;
+
 
     @Id
     @Column(name = "id")
@@ -115,4 +118,15 @@ public class User {
     public void setType(Type type) {
         this.userType = type;
     }
+
+    @OneToMany(mappedBy = "user")
+    public List<Modulegrade> getGrades() {
+        return this.grades;
+    }
+
+    public void setGrades(List<Modulegrade> grades) {
+        this.grades = grades;
+    }
+
+
 }

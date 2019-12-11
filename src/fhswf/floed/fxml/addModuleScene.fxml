@@ -16,14 +16,17 @@
             fx:controller="fhswf.floed.controller.ModuleController">
     <BorderPane prefHeight="800.0" prefWidth="1200.0">
         <top>
-            <HBox prefHeight="75.0" prefWidth="1200.0"
-                  style="-fx-border-width: 0px 0px 1px 0px; -fx-border-color: lightgrey;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="75.0" prefWidth="1200.0"
+                        style="-fx-border-width: 0px 0px 1px 0px; -fx-border-color: lightgrey;"
+                        BorderPane.alignment="CENTER">
                 <padding>
                     <Insets bottom="5" top="5"/>
                 </padding>
                 <Button fx:id="backButton" mnemonicParsing="false" onAction="#backToMain" prefHeight="75.0"
                         prefWidth="75.0" text="BACK"/>
-            </HBox>
+                <Button fx:id="createModuleButton" layoutX="900.0" layoutY="6.0" mnemonicParsing="false"
+                        onAction="#createModule" prefHeight="75.0" prefWidth="75.0" text="Speichern"/>
+            </AnchorPane>
         </top>
         <center>
             <HBox>
@@ -34,27 +37,28 @@
                         </font>
                     </Label>
                     <Label layoutX="42.0" layoutY="103.0" text="Modul"/>
-                    <TextField layoutX="42.0" layoutY="120.0" prefWidth="400.0" fx:id="nameField"/>
+                    <ChoiceBox layoutX="42.0" layoutY="120.0" prefWidth="400.0" fx:id="moduleSelectField"/>
                     <Label layoutX="42.0" layoutY="178.0" text="Creditpoints"/>
-                    <IntegerField layoutX="42.0" layoutY="195.0" prefWidth="400.0" fx:id="maxCreditsField"/>
+                    <IntegerField disable="true" layoutX="42.0" layoutY="195.0" prefWidth="400.0"
+                                  fx:id="maxCreditsField"/>
                     <Label layoutX="42.0" layoutY="253.0" text="Semesterwochenstunden"/>
-                    <IntegerField layoutX="42.0" layoutY="270.0" prefWidth="400.0" fx:id="weekhoursField"/>
+                    <IntegerField disable="true" layoutX="42.0" layoutY="270.0" prefWidth="400.0"
+                                  fx:id="weekhoursField"/>
                     <Label layoutX="42.0" layoutY="328.0" text="Aktueller Versuch"/>
-                    <IntegerField layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="currentTryField"/>
+                    <IntegerField disable="true" layoutX="42.0" layoutY="345.0" prefWidth="400.0"
+                                  fx:id="currentTryField"/>
                 </AnchorPane>
                 <AnchorPane prefHeight="725.0" prefWidth="500.0"
                             style="-fx-border-width: 0px 1px 0px 1px; -fx-border-color: lightgrey;">
                     <Label layoutX="42.0" layoutY="103.0" text="Dozent"/>
-                    <ChoiceBox layoutX="42.0" layoutY="120.0" prefWidth="400.0" fx:id="lecturerField">
-                        <items>
-                        </items>
-                    </ChoiceBox>
+                    <TextField disable="true" layoutX="42.0" layoutY="120.0" prefWidth="400.0"
+                               fx:id="lecturerDisplayField"/>
                     <Label layoutX="42.0" layoutY="178.0" text="Erzielte Note"/>
-                    <FloatField layoutX="42.0" layoutY="195.0" prefWidth="400.0" fx:id="gradeField"/>
+                    <FloatField disable="true" layoutX="42.0" layoutY="195.0" prefWidth="400.0" fx:id="gradeField"/>
                     <Label layoutX="42.0" layoutY="253.0" text="Erzielte Creditpoints"/>
-                    <IntegerField layoutX="42.0" layoutY="270.0" prefWidth="400.0" fx:id="creditsField"/>
+                    <IntegerField disable="true" layoutX="42.0" layoutY="270.0" prefWidth="400.0" fx:id="creditsField"/>
                     <Label layoutX="42.0" layoutY="328.0" text="Typ"/>
-                    <TextField layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="typeField"/>
+                    <TextField disable="true" layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="typeField"/>
                 </AnchorPane>
                 <AnchorPane prefHeight="725.0" prefWidth="200.0">
 
