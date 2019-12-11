@@ -10,19 +10,33 @@ import java.util.Objects;
         @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.username = :name")
 })
 public class User {
-    private int id;
-    private String firstname;
-    private String lastname;
-    private String email;
-    private Type userType;
-    private String password;
-    private String salt;
-    private String username;
-    private List<Modulegrade> grades;
-
-
     @Id
     @Column(name = "id")
+    private int id;
+    @Basic
+    @Column(name = "firstname")
+    private String firstname;
+    @Basic
+    @Column(name = "lastname")
+    private String lastname;
+    @Basic
+    @Column(name = "email")
+    private String email;
+    @OneToOne
+    @JoinColumn(name = "type_id")
+    private Type userType;
+    @Basic
+    @Column(name = "password")
+    private String password;
+    @Basic
+    @Column(name = "salt")
+    private String salt;
+    @Basic
+    @Column(name = "username")
+    private String username;
+    @OneToMany(mappedBy = "user")
+    private List<Modulegrade> grades;
+
     public int getId() {
         return id;
     }
@@ -31,8 +45,6 @@ public class User {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "firstname")
     public String getFirstname() {
         return firstname;
     }
@@ -41,8 +53,6 @@ public class User {
         this.firstname = firstname;
     }
 
-    @Basic
-    @Column(name = "lastname")
     public String getLastname() {
         return lastname;
     }
@@ -51,8 +61,7 @@ public class User {
         this.lastname = lastname;
     }
 
-    @Basic
-    @Column(name = "email")
+
     public String getEmail() {
         return email;
     }
@@ -61,8 +70,6 @@ public class User {
         this.email = email;
     }
 
-    @Basic
-    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -71,8 +78,6 @@ public class User {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "salt")
     public String getSalt() {
         return salt;
     }
@@ -99,8 +104,7 @@ public class User {
         return Objects.hash(id, firstname, lastname, email, password, salt);
     }
 
-    @Basic
-    @Column(name = "username")
+
     public String getUsername() {
         return username;
     }
@@ -109,8 +113,6 @@ public class User {
         this.username = username;
     }
 
-    @OneToOne
-    @JoinColumn(name = "type_id")
     public Type getType() {
         return this.userType;
     }
@@ -119,7 +121,6 @@ public class User {
         this.userType = type;
     }
 
-    @OneToMany(mappedBy = "user")
     public List<Modulegrade> getGrades() {
         return this.grades;
     }

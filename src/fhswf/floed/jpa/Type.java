@@ -9,11 +9,13 @@ import java.util.Objects;
         @NamedQuery(name = "Type.findByName", query = "SELECT t FROM Type t where t.name = :name")
 })
 public class Type {
-    private int id;
-    private String name;
-
     @Id
     @Column(name = "id")
+    private int id;
+    @Basic
+    @Column(name = "name")
+    private String name;
+
     public int getId() {
         return id;
     }
@@ -22,8 +24,6 @@ public class Type {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
     public String getName() {
         return name;
     }

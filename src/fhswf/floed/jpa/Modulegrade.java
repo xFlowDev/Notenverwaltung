@@ -5,15 +5,25 @@ import java.util.Objects;
 
 @Entity
 public class Modulegrade {
-    private int id;
-    private double grade;
-    private Integer gradetry;
-    private Integer creditpoints;
-    private User user;
-    private Module module;
-
     @Id
     @Column(name = "id")
+    private int id;
+    @Basic
+    @Column(name = "grade")
+    private double grade;
+    @Basic
+    @Column(name = "gradetry")
+    private Integer gradetry;
+    @Basic
+    @Column(name = "creditpoints")
+    private Integer creditpoints;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "module_id")
+    private Module module;
+
     public int getId() {
         return id;
     }
@@ -22,8 +32,6 @@ public class Modulegrade {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "grade")
     public double getGrade() {
         return grade;
     }
@@ -32,8 +40,6 @@ public class Modulegrade {
         this.grade = grade;
     }
 
-    @Basic
-    @Column(name = "gradetry")
     public Integer getGradetry() {
         return gradetry;
     }
@@ -42,8 +48,6 @@ public class Modulegrade {
         this.gradetry = gradetry;
     }
 
-    @Basic
-    @Column(name = "creditpoints")
     public Integer getCreditpoints() {
         return creditpoints;
     }
@@ -68,8 +72,6 @@ public class Modulegrade {
         return Objects.hash(id, grade, gradetry, creditpoints);
     }
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
     public User getUser() {
         return this.user;
     }
@@ -78,8 +80,6 @@ public class Modulegrade {
         this.user = user;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "module_id")
     public Module getModule() {
         return this.module;
     }

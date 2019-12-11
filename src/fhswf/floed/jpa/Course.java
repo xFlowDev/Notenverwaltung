@@ -8,11 +8,13 @@ import java.util.Objects;
 
 @Entity
 public class Course {
-    private int id;
-    private String name;
-
     @Id
     @Column(name = "id")
+    private int id;
+    @Basic
+    @Column(name = "name")
+    private String name;
+
     public int getId() {
         return id;
     }
@@ -21,8 +23,6 @@ public class Course {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
     public String getName() {
         return name;
     }

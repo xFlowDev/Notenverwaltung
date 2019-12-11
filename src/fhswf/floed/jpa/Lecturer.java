@@ -9,14 +9,21 @@ import java.util.Objects;
         @NamedQuery(name = "Lecturer.all", query = "SELECT l FROM lecturer l")
 })
 public class Lecturer {
-    private int id;
-    private String firstname;
-    private String lastname;
-    private String title;
-//    private List<Module> modules;
-
     @Id
     @Column(name = "id")
+    private int id;
+    @Basic
+    @Column(name = "firstname")
+    private String firstname;
+    @Basic
+    @Column(name = "lastname")
+    private String lastname;
+    @Basic
+    @Column(name = "title")
+    private String title;
+    @OneToMany(mappedBy = "lecturer")
+    private List<Module> modules;
+
     public int getId() {
         return id;
     }
@@ -25,8 +32,6 @@ public class Lecturer {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "firstname")
     public String getFirstname() {
         return firstname;
     }
@@ -35,8 +40,6 @@ public class Lecturer {
         this.firstname = firstname;
     }
 
-    @Basic
-    @Column(name = "lastname")
     public String getLastname() {
         return lastname;
     }
@@ -45,8 +48,6 @@ public class Lecturer {
         this.lastname = lastname;
     }
 
-    @Basic
-    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -75,12 +76,11 @@ public class Lecturer {
         return this.title + " " + this.firstname + " " + this.lastname;
     }
 
-//    @OneToMany(mappedBy = "lecturer")
-//    public List<Module> getModules() {
-//        return this.modules;
-//    }
-//
-//    public void setModules(List<Module> modules) {
-//        this.modules = modules;
-//    }
+    public List<Module> getModules() {
+        return this.modules;
+    }
+
+    public void setModules(List<Module> modules) {
+        this.modules = modules;
+    }
 }

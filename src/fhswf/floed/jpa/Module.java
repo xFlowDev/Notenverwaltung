@@ -12,14 +12,21 @@ public class Module {
     @Id
     @Column(name = "id")
     private int id;
+    @Basic
+    @Column(name = "name")
     private String name;
+    @Basic
+    @Column(name = "creditpoints")
     private int creditpoints;
+    @Basic
+    @Column(name = "weekhours")
     private int weekhours;
 
     @ManyToOne
     @JoinColumn(name = "lecturer_id")
     private Lecturer lecturer;
 
+    @OneToMany(mappedBy = "module")
     private List<Modulegrade> grades;
 
 
@@ -31,8 +38,6 @@ public class Module {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -55,8 +60,6 @@ public class Module {
         return Objects.hash(id, name);
     }
 
-    @Basic
-    @Column(name = "creditpoints")
     public int getCreditpoints() {
         return creditpoints;
     }
@@ -65,8 +68,6 @@ public class Module {
         this.creditpoints = creditpoints;
     }
 
-    @Basic
-    @Column(name = "weekhours")
     public int getWeekhours() {
         return weekhours;
     }
@@ -74,7 +75,6 @@ public class Module {
     public void setWeekhours(int weekhours) {
         this.weekhours = weekhours;
     }
-
 
     public Lecturer getLecturer() {
         return this.lecturer;
@@ -84,7 +84,6 @@ public class Module {
         this.lecturer = lecturer;
     }
 
-    @OneToMany(mappedBy = "module")
     public List<Modulegrade> getGrades() {
         return this.grades;
     }
