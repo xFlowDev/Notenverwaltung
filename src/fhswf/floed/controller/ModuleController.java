@@ -194,7 +194,7 @@ public class ModuleController implements Initializable {
         if (moduleTypeText != null && !moduleTypeText.isEmpty()) {
             ModuleType moduleType = null;
             Integer moduleTypeId;
-            moduleTypeId = MapHelper.getKeyByValue(moduleNames, moduleTypeText);
+            moduleTypeId = MapHelper.getKeyByValue(moduleTypes, moduleTypeText);
             if (moduleTypeId != null && moduleTypeId != 0) {
                 moduleType = entityManager.find(ModuleType.class, moduleTypeId);
             } else {

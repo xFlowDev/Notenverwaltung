@@ -42,12 +42,10 @@
                     <IntegerField layoutX="42.0" layoutY="195.0" prefWidth="400.0" fx:id="maxCreditsField"/>
                     <Label layoutX="42.0" layoutY="253.0" text="Semesterwochenstunden"/>
                     <IntegerField layoutX="42.0" layoutY="270.0" prefWidth="400.0" fx:id="weekhoursField"/>
-                    <Label layoutX="42.0" layoutY="328.0" text="Aktueller Versuch"/>
-                    <IntegerField layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="currentTryField"/>
-                    <Label layoutX="42.0" layoutY="403.0" text="Dozent"/>
-                    <ChoiceBox layoutX="42.0" layoutY="420.0" prefWidth="400.0" fx:id="lecturerField"/>
-                    <Label layoutX="42.0" layoutY="478.0" text="Modultyp"/>
-                    <ChoiceBox layoutX="42.0" layoutY="495.0" prefWidth="400.0" fx:id="moduleTypeSelectionField"/>
+                    <Label layoutX="42.0" layoutY="328.0" text="Dozent"/>
+                    <ChoiceBox layoutX="42.0" layoutY="345.0" prefWidth="400.0" fx:id="lecturerField"/>
+                    <Label layoutX="42.0" layoutY="403.0" text="Modultyp"/>
+                    <ChoiceBox layoutX="42.0" layoutY="420.0" prefWidth="400.0" fx:id="moduleTypeSelectionField"/>
                 </AnchorPane>
             </HBox>
         </center>
