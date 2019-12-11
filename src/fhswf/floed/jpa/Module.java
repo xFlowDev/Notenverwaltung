@@ -29,6 +29,9 @@ public class Module {
     @OneToMany(mappedBy = "module")
     private List<Modulegrade> grades;
 
+    @OneToOne
+    @JoinColumn(name = "module_type_id")
+    private ModuleType moduleType;
 
     public int getId() {
         return id;
@@ -90,6 +93,14 @@ public class Module {
 
     public void setGrades(List<Modulegrade> grades) {
         this.grades = grades;
+    }
+
+    public void setModuleType(ModuleType type) {
+        this.moduleType = type;
+    }
+
+    public ModuleType getModuleType() {
+        return this.moduleType;
     }
 
 }

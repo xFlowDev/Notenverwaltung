@@ -5,6 +5,9 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "module_type", schema = "notenverwaltung", catalog = "")
+@NamedQueries({
+        @NamedQuery(name = "ModuleType.all", query = "SELECT mt FROM ModuleType mt")
+})
 public class ModuleType {
     @Id
     @Column(name = "id")

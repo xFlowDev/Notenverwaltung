@@ -7,7 +7,7 @@
 <?import javafx.geometry.Insets?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fhswf.floed.controller.TypeController"
+            fx:controller="fhswf.floed.controller.ModuleTypeController"
             prefHeight="400.0" prefWidth="600.0" fx:id="anchorPane">
     <BorderPane prefHeight="800.0" prefWidth="1200.0">
         <top>

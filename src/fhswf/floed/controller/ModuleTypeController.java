@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class TypeController implements Initializable {
+public class ModuleTypeController implements Initializable {
 
     @FXML
     public AnchorPane anchorPane;
@@ -40,7 +40,7 @@ public class TypeController implements Initializable {
     private Map<String, String> errors;
     private ModuleType moduleType;
 
-    public TypeController() {
+    public ModuleTypeController() {
         errors = new HashMap<>();
     }
 

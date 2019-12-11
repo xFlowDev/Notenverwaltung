@@ -4,6 +4,7 @@ import fhswf.floed.custom.fields.FloatField;
 import fhswf.floed.custom.fields.IntegerField;
 import fhswf.floed.jpa.Lecturer;
 import fhswf.floed.jpa.Module;
+import fhswf.floed.jpa.ModuleType;
 import fhswf.floed.singleton.PersistenceManager;
 import fhswf.floed.utils.MapHelper;
 import fhswf.floed.window.WindowSizeManager;
@@ -59,10 +60,13 @@ public class ModuleController implements Initializable {
     public IntegerField creditsField;
     @FXML
     public IntegerField typeField;
+    @FXML
+    public ChoiceBox<String> moduleTypeSelectionField;
 
     private EntityManager entityManager;
 
     private Map<Integer, String> lecturerNames;
+    private Map<Integer, String> moduleTypes;
     private Map<Integer, String> moduleNames;
 
     private Module module;
@@ -78,12 +82,14 @@ public class ModuleController implements Initializable {
         entityManager = factory.createEntityManager();
 
         setLecturerNames();
+        setModuleTypes();
         setModuleNames();
 
-        errors = new HashMap<>();
         if (moduleSelectField != null) {
             moduleSelectField.getSelectionModel().selectedItemProperty().addListener(this::loadModuleData);
         }
+
+        errors = new HashMap<>();
     }
 
     private void loadModuleData(Observable observable) {
@@ -98,6 +104,8 @@ public class ModuleController implements Initializable {
                 weekhoursField.setText(Integer.toString(module.getWeekhours()));
                 Lecturer lecturer = module.getLecturer();
                 lecturerDisplayField.setText(lecturer.fullName());
+                ModuleType moduleType = module.getModuleType();
+                typeField.setText(moduleType.getName());
 
                 currentTryField.setIntegerValue(1);
                 gradeField.setDisable(false);
@@ -181,6 +189,26 @@ public class ModuleController implements Initializable {
         } else {
             errors.put("lecturer", "Dozent nicht gefüllt.");
         }
+
+        String moduleTypeText = moduleTypeSelectionField.getValue();
+        if (moduleTypeText != null && !moduleTypeText.isEmpty()) {
+            ModuleType moduleType = null;
+            Integer moduleTypeId;
+            moduleTypeId = MapHelper.getKeyByValue(moduleNames, moduleTypeText);
+            if (moduleTypeId != null && moduleTypeId != 0) {
+                moduleType = entityManager.find(ModuleType.class, moduleTypeId);
+            } else {
+                errors.put("module_type", "ModulTyp konnte nicht gefunden werden");
+            }
+
+            if (moduleType != null) {
+                module.setModuleType(moduleType);
+            } else {
+                errors.put("module_type", "ModulTyp konnte nicht gefunden werden");
+            }
+        } else {
+            errors.put("module_type", "Modultyp nicht gefüllt");
+        }
     }
 
     private void loadScene(String target) throws IOException {
@@ -192,7 +220,7 @@ public class ModuleController implements Initializable {
         stage.setScene(new Scene(root));
     }
 
-    public void setLecturerNames() {
+    private void setLecturerNames() {
         if (lecturerField != null) {
             TypedQuery<Lecturer> lecturersQuery = entityManager.createNamedQuery("Lecturer.all", Lecturer.class);
             List<Lecturer> lecturers = lecturersQuery.getResultList();
@@ -208,6 +236,24 @@ public class ModuleController implements Initializable {
                     lecturerFieldOptions.add(fullName);
                 }
                 lecturerField.getItems().addAll(lecturerFieldOptions);
+            }
+        }
+    }
+
+    private void setModuleTypes() {
+        if (moduleTypeSelectionField != null) {
+            TypedQuery<ModuleType> typedQuery = entityManager.createNamedQuery("ModuleType.all", ModuleType.class);
+            List<ModuleType> moduleTypes = typedQuery.getResultList();
+            if (moduleTypes.size() <= 0) {
+                System.out.println("No ModuleTypes");
+            } else {
+                this.moduleTypes = new HashMap<>();
+                List<String> typeOptions = new ArrayList<>();
+                for (ModuleType t : moduleTypes) {
+                    this.moduleTypes.put(t.getId(), t.getName());
+                    typeOptions.add(t.getName());
+                }
+                moduleTypeSelectionField.getItems().addAll(typeOptions);
             }
         }
     }
