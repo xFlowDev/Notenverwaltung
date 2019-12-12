@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Modulegrade.getAllFromUser", query = "SELECT mg FROM Modulegrade mg WHERE user = :user")
+})
 public class Modulegrade {
     @Id
     @Column(name = "id")
@@ -87,5 +90,4 @@ public class Modulegrade {
     public void setModule(Module module) {
         this.module = module;
     }
-
 }
