@@ -5,6 +5,7 @@ import fhswf.floed.jpa.Modulegrade;
 import fhswf.floed.jpa.User;
 import fhswf.floed.singleton.PersistenceManager;
 import fhswf.floed.window.WindowSizeManager;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javax.persistence.EntityManager;
@@ -35,6 +37,8 @@ public class MainController implements Initializable {
 
     @FXML
     public Button addModuleButton;
+    @FXML
+    public Button editGradeButton;
     @FXML
     public Button createModuleButton;
     @FXML
@@ -59,11 +63,11 @@ public class MainController implements Initializable {
 
     private EntityManager entityManager;
     private User currentUser;
+    private Modulegrade selectedGrade;
 
     public MainController() {
         EntityManagerFactory factory = PersistenceManager.getInstance();
         entityManager = factory.createEntityManager();
-
     }
 
     @Override
@@ -79,7 +83,27 @@ public class MainController implements Initializable {
         creditColumn.setCellValueFactory(new PropertyValueFactory<>("creditpoints"));
         tryColumn.setCellValueFactory(new PropertyValueFactory<>("gradetry"));
 
+        gradeTable.getSelectionModel().selectedItemProperty().addListener(this::setSelectedGrade);
+
         fillTable();
+    }
+
+    private void setSelectedGrade(Observable observable) {
+        ModuleGradeTableModel selectedGrade = gradeTable.getSelectionModel().getSelectedItem();
+        this.selectedGrade = new Modulegrade();
+        this.selectedGrade = entityManager.find(Modulegrade.class, selectedGrade.getId());
+    }
+
+    @FXML
+    public void editGrade() throws IOException {
+        if (selectedGrade != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/addModuleScene.fxml"));
+            Stage stage = (Stage) anchorPane.getScene().getWindow();
+            stage.setScene(new Scene(loader.load()));
+            ModuleController moduleController = loader.getController();
+            moduleController.editGrade(selectedGrade);
+            stage.show();
+        }
     }
 
     private void fillTable() {
@@ -94,7 +118,6 @@ public class MainController implements Initializable {
             ObservableList<ModuleGradeTableModel> modulegrades = FXCollections.observableArrayList(grades);
             gradeTable.setItems(modulegrades);
         }
-
     }
 
     @FXML

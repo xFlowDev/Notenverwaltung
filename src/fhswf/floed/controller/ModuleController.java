@@ -1,6 +1,6 @@
 package fhswf.floed.controller;
 
-import fhswf.floed.custom.fields.FloatField;
+import fhswf.floed.custom.fields.DoubleField;
 import fhswf.floed.custom.fields.IntegerField;
 import fhswf.floed.jpa.Module;
 import fhswf.floed.jpa.*;
@@ -8,6 +8,7 @@ import fhswf.floed.singleton.PersistenceManager;
 import fhswf.floed.utils.MapHelper;
 import fhswf.floed.window.WindowSizeManager;
 import javafx.beans.Observable;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -51,7 +52,7 @@ public class ModuleController implements Initializable {
     @FXML
     public TextField lecturerDisplayField;
     @FXML
-    public FloatField gradeField;
+    public DoubleField gradeField;
     @FXML
     public IntegerField creditsField;
     @FXML
@@ -96,7 +97,6 @@ public class ModuleController implements Initializable {
             if (moduleId != null) {
                 module = entityManager.find(Module.class, moduleId);
 
-//                moduleSelectField.setDisable(true);
                 maxCreditsField.setText(Integer.toString(module.getCreditpoints()));
                 weekhoursField.setText(Integer.toString(module.getWeekhours()));
                 Lecturer lecturer = module.getLecturer();
@@ -107,13 +107,43 @@ public class ModuleController implements Initializable {
                 currentTryField.setIntegerValue(1);
                 gradeField.setDisable(false);
                 creditsField.setDisable(false);
-                // TODO Once Type is ready to use, go on here
             }
         }
     }
 
 
     public ModuleController() {
+    }
+
+    public void editGrade(Modulegrade modulegrade) {
+        this.modulegrade = modulegrade;
+        moduleSelectField.setValue(modulegrade.getModule().getName());
+        creditsField.setIntegerValue(modulegrade.getCreditpoints());
+        gradeField.setDoubleValue(modulegrade.getGrade());
+
+        createModuleButton.setOnAction(actionEvent -> {
+            try {
+                updateGrade(actionEvent);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void updateGrade(ActionEvent actionEvent) throws IOException {
+        fillModuleGrade();
+        if (errors.size() > 0) {
+            for (String key : errors.keySet()) {
+                System.out.println(key + ": " + errors.get(key));
+            }
+        } else {
+            entityManager.getTransaction().begin();
+            entityManager.merge(modulegrade);
+            entityManager.getTransaction().commit();
+            System.out.println("updated module grade");
+            loadScene("../fxml/mainScene.fxml");
+        }
+
     }
 
     @FXML
@@ -228,8 +258,11 @@ public class ModuleController implements Initializable {
     }
 
     private void fillModuleGrade() {
-        modulegrade = new Modulegrade();
-        float grade = gradeField.getFloatValue();
+        if (modulegrade.getId() <= 0) {
+            modulegrade = new Modulegrade();
+        }
+
+        double grade = gradeField.getDoubleValue();
         if (grade >= 1.0 && grade <= 5.0) {
             modulegrade.setGrade(grade);
         } else {
@@ -243,7 +276,16 @@ public class ModuleController implements Initializable {
             errors.put("creditpoints", "Creditpoints müssen größer als 0 sein");
         }
 
-        modulegrade.setGradetry(1);
+        Integer gradeTry = modulegrade.getGradetry();
+        if (gradeTry == null || gradeTry <= 0) {
+            modulegrade.setGradetry(1);
+        } else {
+            if (gradeTry < 3) {
+                modulegrade.setGradetry(gradeTry + 1);
+            } else {
+                errors.put("try", "Mehr als drei Versuche sind nicht zugelassen.");
+            }
+        }
 
     }
 

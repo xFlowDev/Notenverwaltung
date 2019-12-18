@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import fhswf.floed.custom.fields.IntegerField?>
-<?import fhswf.floed.custom.fields.FloatField?>
+<?import fhswf.floed.custom.fields.DoubleField?>
 <?import javafx.scene.control.ChoiceBox?>
 <AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="fhswf.floed.controller.ModuleController">

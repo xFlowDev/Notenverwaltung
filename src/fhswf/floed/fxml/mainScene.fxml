@@ -17,8 +17,10 @@
                 <padding>
                     <Insets bottom="5" top="5"/>
                 </padding>
-                <Button fx:id="addModuleButton" layoutX="8.0" layoutY="9.0" mnemonicParsing="false"
+                <Button fx:id="addModuleButton" layoutX="8.0" layoutY="6.0" mnemonicParsing="false"
                         onAction="#addModule" prefHeight="75.0" prefWidth="75.0" text="ADD"/>
+                <Button fx:id="editGradeButton" layoutX="83.0" layoutY="6.0" mnemonicParsing="false"
+                        onAction="#editGrade" prefHeight="75.0" prefWidth="75.0" text="EDIT"/>
                 <Button fx:id="createModuleButton" layoutX="900.0" layoutY="6.0" mnemonicParsing="false"
                         onAction="#createModule" prefHeight="75.0" prefWidth="75.0" text="Modul"/>
                 <Button fx:id="createLecturerButton" layoutX="975.0" layoutY="6.0" mnemonicParsing="false"

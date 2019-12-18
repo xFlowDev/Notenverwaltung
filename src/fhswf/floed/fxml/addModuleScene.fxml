@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import fhswf.floed.custom.fields.IntegerField?>
-<?import fhswf.floed.custom.fields.FloatField?>
+<?import fhswf.floed.custom.fields.DoubleField?>
 <?import javafx.scene.control.ChoiceBox?>
 <AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="fhswf.floed.controller.ModuleController">
@@ -54,7 +54,7 @@
                     <TextField disable="true" layoutX="42.0" layoutY="120.0" prefWidth="400.0"
                                fx:id="lecturerDisplayField"/>
                     <Label layoutX="42.0" layoutY="178.0" text="Erzielte Note"/>
-                    <FloatField disable="true" layoutX="42.0" layoutY="195.0" prefWidth="400.0" fx:id="gradeField"/>
+                    <DoubleField disable="true" layoutX="42.0" layoutY="195.0" prefWidth="400.0" fx:id="gradeField"/>
                     <Label layoutX="42.0" layoutY="253.0" text="Erzielte Creditpoints"/>
                     <IntegerField disable="true" layoutX="42.0" layoutY="270.0" prefWidth="400.0" fx:id="creditsField"/>
                     <Label layoutX="42.0" layoutY="328.0" text="Typ"/>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="fhswf.floed.controller.OverviewController"
+            fx:id="anchorPane"
+            prefHeight="400.0" prefWidth="600.0">
+    <BorderPane prefHeight="800.0" prefWidth="1200.0">
+        <top>
+            <AnchorPane prefHeight="75.0" prefWidth="1200.0"
+                        style="-fx-border-width: 0px 0px 1px 0px; -fx-border-color: lightgrey;"
+                        BorderPane.alignment="CENTER">
+                <padding>
+                    <Insets bottom="5" top="5"/>
+                </padding>
+                <Button fx:id="backButton" mnemonicParsing="false" onAction="#backToMain" prefHeight="75.0"
+                        prefWidth="75.0" text="BACK"/>
+            </AnchorPane>
+        </top>
+        <center>
+
+        </center>
+    </BorderPane>
+</AnchorPane>

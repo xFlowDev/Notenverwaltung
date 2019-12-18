@@ -2,27 +2,27 @@ package fhswf.floed.custom.fields;
 
 import javafx.scene.control.TextField;
 
-public class FloatField extends TextField {
-    private float floatValue;
+public class DoubleField extends TextField {
+    private double doubleValue;
 
-    public FloatField() {
+    public DoubleField() {
         this.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null && !newValue.isEmpty()) {
                 if (!newValue.matches("[\\d+\\.\\d+|\\d+]")) {
                     this.setText(newValue.replaceAll("[^\\d+\\.\\d+|\\d+]|\\+", ""));
                 } else {
-                    this.floatValue = Float.parseFloat(newValue);
+                    this.doubleValue = Double.parseDouble(newValue);
                 }
             }
         });
     }
 
-    public void setFloatValue(float value) {
-        this.setText(Float.toString(value));
-        this.floatValue = value;
+    public void setDoubleValue(double value) {
+        this.setText(Double.toString(value));
+        this.doubleValue = value;
     }
 
-    public float getFloatValue() {
-        return this.floatValue;
+    public double getDoubleValue() {
+        return this.doubleValue;
     }
 }
