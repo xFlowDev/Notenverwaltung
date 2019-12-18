@@ -1,4 +1,4 @@
-package fhswf.floed;
+package fhswf.floed.viewmodels;
 
 import fhswf.floed.jpa.Modulegrade;
 

@@ -1,6 +1,6 @@
 package fhswf.floed.controller;
 
-import fhswf.floed.ModuleGradeTableModel;
+import fhswf.floed.viewmodels.ModuleGradeTableModel;
 import fhswf.floed.jpa.Modulegrade;
 import fhswf.floed.jpa.User;
 import fhswf.floed.singleton.PersistenceManager;
@@ -19,7 +19,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javax.persistence.EntityManager;
@@ -60,6 +59,8 @@ public class MainController implements Initializable {
     public TableColumn<ModuleGradeTableModel, Integer> creditColumn;
     @FXML
     public TableColumn<ModuleGradeTableModel, Integer> tryColumn;
+    @FXML
+    public Button studyOverviewButton;
 
     private EntityManager entityManager;
     private User currentUser;
@@ -144,6 +145,11 @@ public class MainController implements Initializable {
     @FXML
     public void createType(ActionEvent actionEvent) throws IOException {
         loadScene("../fxml/createTypeScene.fxml");
+    }
+
+    @FXML
+    public void showOverview(ActionEvent actionEvent) throws IOException {
+        loadScene("../fxml/showStudyAverageScene.fxml");
     }
 
     private void loadScene(String target) throws IOException {

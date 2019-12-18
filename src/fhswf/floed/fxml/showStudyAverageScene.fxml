@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="fhswf.floed.controller.OverviewController"
@@ -25,7 +26,36 @@
             </AnchorPane>
         </top>
         <center>
+            <HBox>
+                <AnchorPane prefHeight="725.0" prefWidth="500.0">
+                    <Label layoutX="28.0" layoutY="33.0" text="Studiumsübersicht">
+                        <font>
+                            <Font size="24.0"/>
+                        </font>
+                    </Label>
+                    <Label layoutX="42.0" layoutY="103.0" text="Kolloqiumsnote"/>
+                    <TextField disable="true" layoutX="42.0" layoutY="120.0" prefWidth="400.0" fx:id="kolloqiumField"/>
+                    <Label layoutX="42.0" layoutY="178.0" text="Creditpoints Kolloqium"/>
+                    <TextField disable="true" layoutX="42.0" layoutY="195.0" prefWidth="400.0"
+                                  fx:id="kolloqiumCreditsField"/>
+                    <Label layoutX="42.0" layoutY="253.0" text="Notendurchschnitt"/>
+                    <TextField disable="true" layoutX="42.0" layoutY="270.0" prefWidth="400.0"
+                                  fx:id="averageField"/>
 
+                </AnchorPane>
+                <AnchorPane prefHeight="725.0" prefWidth="500.0"
+                            style="-fx-border-width: 0px 1px 0px 1px; -fx-border-color: lightgrey;">
+                    <Label layoutX="42.0" layoutY="103.0" text="Abschlussarbeit"/>
+                    <TextField disable="true" layoutX="42.0" layoutY="120.0" prefWidth="400.0"
+                               fx:id="examField"/>
+                    <Label layoutX="42.0" layoutY="178.0" text="Creditpoints Abschlussarbeit"/>
+                    <TextField disable="true" layoutX="42.0" layoutY="195.0" prefWidth="400.0" fx:id="examCreditsField"/>
+                    <Label layoutX="42.0" layoutY="253.0" text="Summe Creditpoints"/>
+                    <TextField disable="true" layoutX="42.0" layoutY="270.0" prefWidth="400.0"
+                               fx:id="creditSumField"/>
+
+                </AnchorPane>
+            </HBox>
         </center>
     </BorderPane>
 </AnchorPane>

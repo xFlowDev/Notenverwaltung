@@ -76,9 +76,6 @@ public class ModuleController implements Initializable {
         anchorPane.setMinHeight(WindowSizeManager.getHeight());
         anchorPane.setMinWidth(WindowSizeManager.getWidth());
 
-        EntityManagerFactory factory = PersistenceManager.getInstance();
-        entityManager = factory.createEntityManager();
-
         setLecturerNames();
         setModuleTypes();
         setModuleNames();
@@ -113,6 +110,8 @@ public class ModuleController implements Initializable {
 
 
     public ModuleController() {
+        EntityManagerFactory factory = PersistenceManager.getInstance();
+        entityManager = factory.createEntityManager();
     }
 
     public void editGrade(Modulegrade modulegrade) {
@@ -258,7 +257,7 @@ public class ModuleController implements Initializable {
     }
 
     private void fillModuleGrade() {
-        if (modulegrade.getId() <= 0) {
+        if (modulegrade == null || modulegrade.getId() <= 0) {
             modulegrade = new Modulegrade();
         }
 
